@@ -95,10 +95,10 @@ const routes = [
     name: 'accordionStaysPage',
     component: () => import(/* webpackChunkName: "modal2" */ '../views/AccordionStaysPage.vue')
   },
-	{
-		path: "/radialMenu",
-		name: "radialMenu",
-		component: () => import("../views/RadialMenu.vue"),
+  {
+		path: "/datePicker",
+		name: "datePicker",
+		component: () => import("../views/DatePicker.vue"),
 	},
 ]
 

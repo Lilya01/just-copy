@@ -1,0 +1,69 @@
+.calendar {
+  position: relative;
+  margin: 100px;
+
+  &-dropdown {
+    position: absolute;
+    background: white;
+    border: 1px solid #53535386;
+    z-index: 10;
+    border-radius: 8px;
+    margin-top: 20px;
+    padding: 10px;
+  }
+
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 5px;
+    margin-bottom: 10px;
+    border-bottom: 1px rgba(0, 0, 0, 0.414) solid;
+  }
+
+ &-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+  }
+}
+
+.day {
+  text-align: center;
+  padding: 8px;
+  cursor: pointer;
+  color: #091029;
+  transition: .2s;
+
+  &:hover:not(.other-month) {
+    background-color: rgba(128, 128, 128, 0.209);
+    transition: .2s;
+  }
+
+  &-name {
+    text-align: center;
+    padding: 8px;
+    cursor: pointer;
+    color: #091029; 
+  }
+}
+
+.day.other-month {
+  color: gray;
+  cursor: not-allowed;
+}
+
+.blank {
+  opacity: 0;
+}
+
+button {
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: .2s;
+
+  &:hover {
+    color: rgb(180, 179, 179);
+    transition: .2s;
+  }
+}

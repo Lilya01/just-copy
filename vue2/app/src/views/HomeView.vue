@@ -51,8 +51,8 @@
     <p><router-link :to="{ name: 'accordionStaysPage' }">
       accordionStaysPage
     </router-link></p>
-		<p><router-link :to="{ name: 'radialMenu' }">
-			radialMenu
+		<p><router-link :to="{ name: 'datePicker' }">
+			DatePicker
 		</router-link></p>
   </div>
 </template>
