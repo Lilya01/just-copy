@@ -24,6 +24,19 @@
     display: grid;
     grid-template-columns: repeat(7, 1fr);
   }
+
+  &-button {
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: .2s;
+  
+    &:hover {
+      color: rgb(180, 179, 179);
+      transition: .2s;
+    }
+  }
 }
 
 .day {
@@ -33,9 +46,14 @@
   color: #091029;
   transition: .2s;
 
-  &:hover:not(.other-month) {
+  &:hover:not(&--other-month) {
     background-color: rgba(128, 128, 128, 0.209);
     transition: .2s;
+  }
+
+  &--other-month {
+    color: gray;
+    cursor: not-allowed;
   }
 
   &-name {
@@ -46,24 +64,7 @@
   }
 }
 
-.day.other-month {
-  color: gray;
-  cursor: not-allowed;
-}
-
 .blank {
   opacity: 0;
 }
 
-button {
-  background: none;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  transition: .2s;
-
-  &:hover {
-    color: rgb(180, 179, 179);
-    transition: .2s;
-  }
-}

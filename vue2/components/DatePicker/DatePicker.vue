@@ -1,4 +1,3 @@
-
 <template>
   <div class="calendar">
     <input
@@ -8,20 +7,21 @@
       readonly
     />
     <div v-if="showCalendar" class="calendar-dropdown">
-      <div class="calendar-header">
-        <button @click="changeYear(-1)"><<</button>
-        <button @click="changeMonth(-1)"><</button>
-        <span>{{ monthNames[currentMonth] }} {{ currentYear }}</span>
-        <button @click="changeMonth(1)">></button>
-        <button @click="changeYear(1)">>></button>
-      </div>
+  <div class="calendar-header">
+    <button class="calendar-button" @click="changeYear(-1)">«</button>
+    <button class="calendar-button" @click="changeMonth(-1)">‹</button>
+    <span>{{ monthNames[currentMonth] }} {{ currentYear }}</span>
+    <button class="calendar-button" @click="changeMonth(1)">›</button>
+    <button class="calendar-button" @click="changeYear(1)">»</button>
+  </div>
       <div class="calendar-grid">
         <div class="day-name" v-for="day in dayNames" :key="day">{{ day }}</div>
         <div
+          class="day"
           v-for="(date, index) in fullMonthDays"
           :key="index"
-          :class="{'day': true, 'other-month': date.isOtherMonth}"
-          @click="!date.isOtherMonth && selectDate(date.day)"
+          :class="{'day--other-month': date.isOtherMonth}"
+          @click="handleDateClick(date)"
         >
           {{ date.day }}
         </div>
@@ -33,30 +33,24 @@
 <script>
 export default {
   data() {
-    const today = new Date();
     return {
-      currentYear: today.getFullYear(),
-      currentMonth: today.getMonth(),
+      currentYear: new Date().getFullYear(),
+      currentMonth: new Date().getMonth(),
       showCalendar: false,
-      dayNames: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
-      monthNames: [
-        'Январь',
-        'Февраль',
-        'Март',
-        'Апрель',
-        'Май',
-        'Июнь',
-        'Июль',
-        'Август',
-        'Сентябрь',
-        'Октябрь',
-        'Ноябрь',
-        'Декабрь'
-      ],
       formattedDate: ''
     };
   },
   computed: {
+    dayNames() {
+      return ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
+    },
+    monthNames() {
+      return [
+        'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 
+        'Июнь', 'Июль', 'Август', 'Сентябрь', 
+        'Октябрь', 'Ноябрь', 'Декабрь'
+      ];
+    },
     daysInMonth() {
       const date = new Date(this.currentYear, this.currentMonth + 1, 0);
       return Array.from({ length: date.getDate() }, (_, i) => ({ day: i + 1, isOtherMonth: false }));
@@ -106,6 +100,11 @@ export default {
         day: i + 1,
         isOtherMonth: true
       }));
+    },
+    handleDateClick(date) {
+      if (!date.isOtherMonth) {
+        this.selectDate(date.day);
+      }
     }
   }
 };
