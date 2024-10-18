@@ -3,17 +3,17 @@
     <input
       type="text"
       v-model="formattedDate"
-      @focus="showCalendar = true"
+      @focus="() => openCalendar()"
       readonly
     />
     <div v-if="showCalendar" class="calendar-dropdown">
-  <div class="calendar-header">
-    <button class="calendar-button" @click="changeYear(-1)">«</button>
-    <button class="calendar-button" @click="changeMonth(-1)">‹</button>
-    <span>{{ monthNames[currentMonth] }} {{ currentYear }}</span>
-    <button class="calendar-button" @click="changeMonth(1)">›</button>
-    <button class="calendar-button" @click="changeYear(1)">»</button>
-  </div>
+    <div class="calendar-header">
+      <button class="calendar-button" @click="() => changeYear(-1)">«</button>
+      <button class="calendar-button" @click="() => changeMonth(-1)">‹</button>
+      <span>{{ monthNames[currentMonth] }} {{ currentYear }}</span>
+      <button class="calendar-button" @click="() => changeMonth(1)">›</button>
+      <button class="calendar-button" @click="() => changeYear(1)">»</button>
+    </div>
       <div class="calendar-grid">
         <div class="day-name" v-for="day in dayNames" :key="day">{{ day }}</div>
         <div
@@ -21,7 +21,7 @@
           v-for="(date, index) in fullMonthDays"
           :key="index"
           :class="{'day--other-month': date.isOtherMonth}"
-          @click="handleDateClick(date)"
+          @click="() => handleDateClick(date)"
         >
           {{ date.day }}
         </div>
@@ -80,8 +80,14 @@ export default {
     changeYear(amount) {
       this.currentYear += amount;
     },
+    openCalendar() {
+      this.showCalendar = true
+    },
+    formatDate(date) {
+      return `${this.currentYear}-${String(this.currentMonth + 1).padStart(2, '0')}-${String(date).padStart(2, '0')}`
+    },
     selectDate(date) {
-      this.formattedDate = `${this.currentYear}-${String(this.currentMonth + 1).padStart(2, '0')}-${String(date).padStart(2, '0')}`;
+      this.formattedDate = this.formatDate(date);
       this.showCalendar = false;
     },
     getPreviousMonthDays() {
