@@ -89,17 +89,17 @@ const routes = [
     path: '/mainInput',
     name: 'mainInput',
     component: () => import(/* webpackChunkName: "mainInput" */ '../views/MainInput.vue')
- },
- {
+  },
+  {
     path: '/accordionStaysPage',
     name: 'accordionStaysPage',
     component: () => import(/* webpackChunkName: "modal2" */ '../views/AccordionStaysPage.vue')
   },
   {
-		path: "/datePicker",
-		name: "datePicker",
-		component: () => import("../views/DatePicker.vue"),
-	},
+    path: "/datePicker",
+    name: "datePicker",
+    component: () => import("../views/DatePicker.vue"),
+  },
 ]
 
 const router = new VueRouter({

@@ -1,21 +1,21 @@
 <template>
   <div class="calendar">
     <input
-      type="text"
       v-model="formattedDate"
-      @focus="() => openCalendar()"
+      type="text"
       readonly
+      @focus="() => openCalendar()"
     />
-    <div v-if="showCalendar" class="calendar-dropdown">
-    <div class="calendar-header">
-      <button class="calendar-button" @click="() => changeYear(-1)">«</button>
-      <button class="calendar-button" @click="() => changeMonth(-1)">‹</button>
+    <div v-if="showCalendar" class="calendar__dropdown">
+    <div class="calendar__header">
+      <button class="calendar__button" @click="() => changeYear(-1)">«</button>
+      <button class="calendar__button" @click="() => changeMonth(-1)">‹</button>
       <span>{{ monthNames[currentMonth] }} {{ currentYear }}</span>
-      <button class="calendar-button" @click="() => changeMonth(1)">›</button>
-      <button class="calendar-button" @click="() => changeYear(1)">»</button>
+      <button class="calendar__button" @click="() => changeMonth(1)">›</button>
+      <button class="calendar__button" @click="() => changeYear(1)">»</button>
     </div>
-      <div class="calendar-grid">
-        <div class="day-name" v-for="day in dayNames" :key="day">{{ day }}</div>
+      <div class="calendar__grid">
+        <div class="day__name" :key="day" v-for="day in dayNames">{{ day }}</div>
         <div
           class="day"
           v-for="(date, index) in fullMonthDays"
@@ -32,6 +32,7 @@
 
 <script>
 export default {
+  name: 'DatePicker',
   data() {
     return {
       currentYear: new Date().getFullYear(),

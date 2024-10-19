@@ -2,7 +2,7 @@
   position: relative;
   margin: 100px;
 
-  &-dropdown {
+  &__dropdown {
     position: absolute;
     background: white;
     border: 1px solid #53535386;
@@ -12,20 +12,20 @@
     padding: 10px;
   }
 
-  &-header {
+  &__header {
     display: flex;
     justify-content: space-between;
     padding: 10px 5px;
     margin-bottom: 10px;
-    border-bottom: 1px rgba(0, 0, 0, 0.414) solid;
+    border-bottom: 1px rgba(0, 0, 0, 0.5) solid;
   }
 
- &-grid {
+ &__grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
   }
 
-  &-button {
+  &__button {
     background: none;
     border: none;
     outline: none;
@@ -47,7 +47,7 @@
   transition: .2s;
 
   &:hover:not(&--other-month) {
-    background-color: rgba(128, 128, 128, 0.209);
+    background-color: rgba(128, 128, 128, 0.2);
     transition: .2s;
   }
 
@@ -56,7 +56,7 @@
     cursor: not-allowed;
   }
 
-  &-name {
+  &__name {
     text-align: center;
     padding: 8px;
     cursor: pointer;
@@ -67,4 +67,3 @@
 .blank {
   opacity: 0;
 }
-
